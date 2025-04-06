@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/")
@@ -18,8 +19,8 @@ public class ChatController {
        this.chatApiService = chatApiService;
    }
 
-   @PostMapping("/chat")
-    public Mono<ChatResponse> processMessage(@RequestBody ChatRequest chatRequest) {
-       return chatApiService.sendMessage(chatRequest);
+   @PostMapping("/chat/completions")
+    public Mono<ChatResponse> processMessage(@RequestBody Map<String, String> chatRequest) {
+       return chatApiService.sendMessage(chatRequest.get("text"));
    }
 }
