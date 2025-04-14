@@ -1,7 +1,5 @@
 package org.example.springaiclient;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -20,7 +18,7 @@ public class ChatApiService {
     public Mono<ChatResponse> sendMessage(String request) {
         OpenAIRequest openAIRequest = createRequest(request);
         return webClient.post()
-                .uri("/chat/completions")
+                //.uri("")
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(openAIRequest)
                 .retrieve()
